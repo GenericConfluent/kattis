@@ -1,0 +1,15 @@
+{
+    "sysroot_src": "/home/generic/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library",
+    "crates": [
+        {
+            "root_module": "froggerhard.rs",
+            "edition": "2021",
+            "deps": []
+        },
+        {
+            "root_module": "froggerhard_old.rs",
+            "edition": "2021",
+            "deps": []
+        }
+    ]
+}
