@@ -1,11 +1,23 @@
-all: clean froggerhard froggerhard_old
+RUST := $(wildcard *.rs)
+HASKELL := $(wildcard *.hs)
+TARGET := target
+
+.PHONY: all
+all: clean rs hs
+
+.PHONY: hs
+hs: $(HASKELL:.hs=)
+
+.PHONY: rs
+rs: $(RUST:.rs=)
 
 clean:
 	rm -rf target
 	mkdir target
 
-froggerhard:
-	rustc froggerhard.rs -o target/froggerhard
+%: %.rs
+	rustc $< -o $(TARGET)/$@
 
-froggerhard_old:
-	rustc froggerhard_old.rs -o target/froggerhard_old
+%: %.hs
+	ghc $< -o $(TARGET)/$@
+
