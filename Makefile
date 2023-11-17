@@ -6,14 +6,20 @@ TARGET := target
 all: clean rs hs
 
 .PHONY: hs
-hs: $(HASKELL:.hs=)
+hs: $(HASKELL:.hs=) posths
 
 .PHONY: rs
 rs: $(RUST:.rs=)
 
+.PHONY: posths
+posths:
+	@rm *.o
+	@rm *.hi
+
+.PHONY: clean
 clean:
 	rm -rf target
-	mkdir target
+	@mkdir target
 
 %: %.rs
 	rustc $< -o $(TARGET)/$@

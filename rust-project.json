@@ -7,6 +7,16 @@
             "deps": []
         },
         {
+            "root_module": "ninety_nine.rs",
+            "edition": "2021",
+            "deps": []
+        },
+        {
+            "root_module": "ascii_addition.rs",
+            "edition": "2021",
+            "deps": []
+        },
+        {
             "root_module": "froggerhard_old.rs",
             "edition": "2021",
             "deps": []

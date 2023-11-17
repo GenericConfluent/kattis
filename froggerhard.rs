@@ -1,4 +1,4 @@
-use std::io::stdin;
+use std::{collections::HashSet, io::stdin};
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 enum VisitState {
@@ -12,14 +12,12 @@ use VisitState::*;
 struct Node {
     visited: VisitState,
     val: usize,
-    sum: usize,
-    term: bool,
+    seen: HashSet<i64>,
     // Only one outgoing edge
     adj: Vec<usize>,
 }
 
 fn dfs(graph: &mut [Node], cycle: &mut Vec<usize>, start: usize) -> Option<usize> {
-    graph[start].term = true;
     match graph[start].visited {
         InProgress => return Some(start),
         Seen => return None,
@@ -39,11 +37,9 @@ fn dfs(graph: &mut [Node], cycle: &mut Vec<usize>, start: usize) -> Option<usize
             val = Some(end);
         } else {
             graph[start].val += graph[adj].val;
-            graph[start].sum += graph[adj].sum;
-            graph[adj].term = false;
+            graph[start].seen.union(&graph[adj].seen)
         }
     }
-    graph[start].sum += graph[start].val;
 
     graph[start].visited = Seen;
     val
